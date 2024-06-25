@@ -7,8 +7,8 @@ import (
 	middleware "github.com/otie173/webpage/api/middlewares"
 )
 
-func RegisterHandlers(mux *http.ServeMux) {
-	mux.Handle("GET /", middleware.LoggingMiddleware(http.HandlerFunc(sayHello)))
+func RegisterHandlers() {
+	http.Handle("GET /", middleware.LoggingMiddleware(http.HandlerFunc(sayHello)))
 }
 
 func sayHello(w http.ResponseWriter, r *http.Request) {

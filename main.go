@@ -7,10 +7,9 @@ import (
 )
 
 func main() {
-	mux := http.NewServeMux()
-	handler.RegisterHandlers(mux)
+	handler.RegisterHandlers()
 
 	fileServer := http.FileServer(http.Dir("static"))
-	mux.Handle("static/", http.StripPrefix("static", fileServer))
-	http.ListenAndServe("localhost:8080", mux)
+	http.Handle("static/", http.StripPrefix("static", fileServer))
+	http.ListenAndServe("localhost:8080", nil)
 }
